@@ -1,7 +1,7 @@
-rtgraph
-=======
+xrtgraph
+========
 
-rtgraph draws live graphs from standard input data for X11 Window System.
+xrtgraph draws live graphs from standard input data for X11 Window System.
 
 Dependencies
 ============
