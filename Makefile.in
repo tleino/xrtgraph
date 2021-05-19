@@ -1,0 +1,52 @@
+SHELL = /bin/sh
+CFLAGS = -g -Wall -pedantic -std=c99 @PKGS_CFLAGS@ @SYSTEM_CFLAGS@
+LDFLAGS = @PKGS_LDFLAGS@ -lm
+
+prefix = @prefix@
+exec_prefix = $(prefix)
+bindir = $(exec_prefix)/bin
+libdir = $(exec_prefix)/lib
+datarootdir = $(prefix)/share
+mandir = $(datarootdir)/man
+
+INSTALL ?= install
+INSTALLFLAGS ?= -D
+
+SRCS=x11.c x11graphview.c graph.c xrtgraph.c
+	
+DISTFILES=\
+	Makefile.in\
+	configure\
+	README\
+	LICENSE
+PROG=xrtgraph
+MAN=xrtgraph.1
+
+OBJS=$(SRCS:.c=.o)
+
+all: $(PROG)
+
+$(PROG): $(OBJS)
+	$(CC) -o$@ $(OBJS) $(LDFLAGS)
+
+.c.o:
+	$(CC) $(CFLAGS) -c $<
+
+clean:
+	rm -f $(OBJS) $(PROG)
+
+install: $(PROG)
+	$(INSTALL) $(INSTALLFLAGS) $(PROG) $(DESTDIR)$(bindir)/$(PROG)
+	$(INSTALL) $(INSTALLFLAGS) $(MAN) $(DESTDIR)$(mandir)/$(MAN)
+
+uninstall:
+	rm -f $(DESTDIR)$(bindir)/$(PROG)
+
+graph.o: graph.c graph.h graphview.h util.h
+xrtgraph.o: xrtgraph.c graph.h gfxctx.h util.h
+graph.o: graph.c graph.h graphview.h util.h
+xrtgraph.o: xrtgraph.c graph.h gfxctx.h util.h
+graph.o: graph.c graph.h graphview.h util.h
+x11.o: x11.c util.h gfxctx.h x11.h
+x11graphview.o: x11graphview.c graphview.h graph.h gfxctx.h x11.h util.h
+xrtgraph.o: xrtgraph.c graph.h gfxctx.h util.h

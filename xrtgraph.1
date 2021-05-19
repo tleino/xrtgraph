@@ -1,0 +1,38 @@
+.Dd $Mdocdate: May 19 2021 $
+.Dt XRTGRAPH 1
+.Os
+.Sh NAME
+.Nm xrtgraph
+.Nd live graphs from standard input data for X11 Window System
+.Sh SYNPSIS
+.Nm
+.Op Fl psq
+.Op Fl r Ar type
+.Op regular expression
+.Sh DESCRIPTION
+.Nm xrtgraph
+is a simple tool for viewing live graphs from standard input data in
+an X11 window.
+.Pp
+The options are as follows:
+.Bl -tag -width Ds
+.Lt Fl display Ar display
+Set the display host and number for the graph.
+.Lt Fl fg Ar foreground color
+Set the foreground color.
+.Lt Fl bg Ar background color
+Set the background color.
+.Lt Fl hl Ar highlight color
+Set the hightlight color.
+.Lt Fl font Ar font
+Set the font for text in the graph if any is shown.
+.Lt Fl geometry Ar window geometry
+Set the window geometry in the X11 window geometry form i.e.
+widthxheight+xoffset+yoffset e.g. 800x600+0+0.
+.El
+.Sh EXAMPLES
+Draw a live graph of downstream bandwidth usage.
+.Pp
+.Dl $ netstat -w 1 -b | awk 'NR>=4 { print $1; fflush(stdout) }' | xrtgraph
+.Sh SEE ALSO
+.Xr xrtgauge 1
