@@ -2,3 +2,28 @@ rtgraph
 =======
 
 rtgraph draws live graphs from standard input data for X11 Window System.
+
+Dependencies
+============
+
+None as long as you're on a conventional Unix-like OS base system with
+C compiler, standard headers, pkg-config and X11 and its development
+headers installed.
+
+Build & Install
+===============
+
+./configure ~
+make install
+
+Example
+=======
+
+$ netstat -w 1 -b \
+	| awk 'NR>=4 { print $1; fflush(stdout) }' \
+	| xrtgraph
+
+See also
+========
+
+https://github.com/tleino/xrtgauge
