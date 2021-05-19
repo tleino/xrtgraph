@@ -229,12 +229,12 @@ gfxctx_open(int *argc, char **argv)
 	 * Standard X11 options.
 	 */
 	static XrmOptionDescRec optable[] = {
-		{ "-display", ".display", XrmoptionSepArg, (caddr_t) NULL },
-		{ "-fg", "*foreground", XrmoptionSepArg, (caddr_t) NULL },
-		{ "-bg", "*background", XrmoptionSepArg, (caddr_t) NULL },
-		{ "-hl", "*highlight", XrmoptionSepArg, (caddr_t) NULL },
-		{ "-font", "*font", XrmoptionSepArg, (caddr_t) NULL },
-		{ "-geometry", "*geometry", XrmoptionSepArg, (caddr_t) NULL }
+		{ "-display", ".display", XrmoptionSepArg, NULL },
+		{ "-fg", "*foreground", XrmoptionSepArg, NULL },
+		{ "-bg", "*background", XrmoptionSepArg, NULL },
+		{ "-hl", "*highlight", XrmoptionSepArg, NULL },
+		{ "-font", "*font", XrmoptionSepArg, NULL },
+		{ "-geometry", "*geometry", XrmoptionSepArg, NULL }
 	};
 
 	if ((ctx = malloc(sizeof(struct gfxctx))) == NULL)
