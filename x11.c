@@ -247,6 +247,9 @@ gfxctx_open(int *argc, char **argv)
 	if (*argc != 1)
 		return NULL;
 
+	ctx->argc = *argc;
+	ctx->argv = argv;
+
 	if ((ctx->name = basename(argv[0])) == NULL)
 		err(1, "basename");
 
